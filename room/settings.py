@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_nose',
     'aloe_django',
+    'roomate_app'
 ]
 
 MIDDLEWARE = [

@@ -9,4 +9,8 @@ To get out of the virtual enviroment
 ```
 $ deactivate
 ```
+To start the server run
 
+```
+$ python manage.py runserver
+```

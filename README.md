@@ -1,4 +1,4 @@
-# projectRommate
+# projectRoomate
 
 Once you are in the project first run the following command to be in a virtual enviroment
 

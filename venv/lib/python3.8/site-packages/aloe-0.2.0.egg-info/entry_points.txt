@@ -1,0 +1,6 @@
+[console_scripts]
+aloe = aloe:main
+
+[nose.plugins.0.10]
+aloe = aloe.plugin:GherkinPlugin
+

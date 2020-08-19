@@ -41,3 +41,4 @@ Run Aloe Tests
   ```
   $ aloe THEAPP/features/TESTCASE.feature
   ```
+  Eg. aloe roomate_app/features/view_homepage.feature

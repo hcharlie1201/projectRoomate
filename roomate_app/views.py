@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Apartment, MyUser, Chore
 from django.contrib.auth.models import User
-from .forms import ApartmentForm
+from .forms import JoinApartmentForm
 
 # Create your views here.
 def index(request):
@@ -25,15 +25,17 @@ def new_apt(request):
 #Get an existing apartment.
 def assign_apt(request):
     current_user = request.user
-    if request.method != 'POST':
-        form = ApartmentForm()
-    else:
-        form = ApartmentForm(data=request.POST)
+    if request.method == 'POST':
+        form = JoinApartmentForm(request.POST)
         if form.is_valid():
-            input_token = form.fields[0]
+            input_token = form.cleaned_data['apt_token']
             current_user.myuser.myApt = Apartment.objects.get(token=input_token)
-            current_user.save()
-            return redirect('roomate_ap:dashboard')
+            current_user.myuser.save()
+            return redirect('roomate_app:dashboard')
+    else:
+        form = JoinApartmentForm()
+        
     context = {'form': form}
-    return render(request, 'roomate_app/join_apartment.html', context)
+    return render(request, 'roomate_app/dummy.html', context)
+    #replate dummy.html with something else
 

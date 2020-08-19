@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
 # Create your views here.
-def welcome(request):
-    return render #something
+def index(request):
+    return render(request, 'roomate_app/index.html')

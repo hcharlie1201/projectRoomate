@@ -24,7 +24,7 @@ Install the Environments
 ```
 $ pip install -r requirements.txt
 ```
-Run the tests
+Run Unit Tests
  1. Standard
   ```
   $ ./manage.py test
@@ -36,4 +36,8 @@ Run the tests
  3. Verbose
   ```
   $ ./manage.py test --verbose
+  ```
+Run Aloe Tests
+  ```
+  $ aloe THEAPP/features/TESTCASE.feature
   ```

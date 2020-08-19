@@ -1,11 +1,24 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-
+from roomate_app.models import MyUser 
+from django.contrib import messages
 # Create your views here.
 
 def register(request):
-    if request.method != 'POST':
-        form = UserCreationForm()
-    else:
+    if request.method == 'POST':
         form = UserCreationForm(data=request.POST)
+
+        if form.is_valid():
+            auth_user = form.save()
+
+            my_user = MyUser()
+            my_user.user_id = auth_user.id
+            my_user.save()
+
+            login(request, auth_user)
+            return redirect('roomate_app:dashboard')
+
+    form = UserCreationForm()
+    messages.warning(request, 'Failed To Create A Profile. Please Try Again.')
+    return render(request, 'register.html', {'form':form})

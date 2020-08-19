@@ -9,14 +9,18 @@ def index(request):
 
 def dashboard(request):
     #check if the user has an apartment or not
-    pass
+    return render(request, 'roomate_app/dummy.html')
 #Create a new apartment.
 def new_apt(request):
+    if request.method != 'POST':
+        #need to raise a flash here (NOT IMPLEMENTED)
+        return redirect('roomate_app:dashboard')
     my_apartment = Apartment()
+    my_apartment.save()
     current_user = request.user
     current_user.myuser.myApt = my_apartment
-    current_user.save()
-    return redirect('roomate_ap:dashboard')
+    current_user.myuser.save()
+    return redirect('roomate_app:dashboard')
 
 #Get an existing apartment.
 def assign_apt(request):

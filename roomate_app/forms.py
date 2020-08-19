@@ -4,6 +4,6 @@ from .models import MyUser, Apartment, Chore
 
 class ApartmentForm(forms.ModelForm):
     class Meta:
-        model = Apartment
+        #model = Apartment
         fields = ['text']
         lables = {'text': ''}

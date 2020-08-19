@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_nose',
     'aloe_django',
+    'coverage',
     'roomate_app'
 ]
 
@@ -123,3 +124,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [    
+    '--cover-erase',
+    '--cover-package=roomate_app', # Change `MY_APP` to your `app` name
+]

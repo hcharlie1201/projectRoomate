@@ -32,4 +32,5 @@ class AptTests(TestCase):
         _ = self.client.post('/joinapt/', {'apt_token':self.dummy_apartment.token})
         self.assertIsNotNone(self.auth_user2.myuser.myApt)
 
-
+    def test_new_apartment_sad(self):
+        pass

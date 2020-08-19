@@ -10,6 +10,7 @@ def index(request):
 def dashboard(request):
     #check if the user has an apartment or not
     return render(request, 'roomate_app/dummy.html')
+
 #Create a new apartment.
 def new_apt(request):
     if request.method != 'POST':
@@ -39,4 +40,3 @@ def assign_apt(request):
     context = {'form': form}
     return render(request, 'roomate_app/dummy.html', context)
     #replate dummy.html with something else
-

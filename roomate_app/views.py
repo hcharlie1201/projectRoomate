@@ -33,6 +33,7 @@ def assign_apt(request):
             current_user.myuser.save()
             return redirect('roomate_app:dashboard')
     else:
+        #need to raise a flash here (NOT IMPLEMENTED)
         form = JoinApartmentForm()
         
     context = {'form': form}

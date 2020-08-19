@@ -1,5 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.contrib.messages import get_messages
+
 from roomate_app.models import Apartment, MyUser
 from roomate_app.views import new_apt, assign_apt
 
@@ -33,4 +35,13 @@ class AptTests(TestCase):
         self.assertIsNotNone(self.auth_user2.myuser.myApt)
 
     def test_new_apartment_sad(self):
-        pass
+        self.client.login(username='user1', password='abc123456789')
+        response = self.client.get('/newapt/', {})
+        warning = list(get_messages(response.wsgi_request))
+        self.assertEqual('Failed To Create An Apartment. Please try again.', str(warning[0]))
+    
+    def test_join_apartment_sad(self):
+        self.client.login(username='user1', password='abc123456789')
+        response = self.client.get('/joinapt/', {})
+        warning = list(get_messages(response.wsgi_request))
+        self.assertEqual('Failed To Join An Apartment. Please Verify Your Token.', str(warning[0]))

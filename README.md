@@ -20,3 +20,16 @@ Install the Environments
 ```
 $ pip install -r requirements.txt
 ```
+Run the tests
+ 1. Standard
+  ```
+  $ ./manage.py test
+  ```
+ 2. Allow all print statements to be printed
+  ```
+  $ ./manage.py test --nocapture
+  ```
+ 3. Verbose
+  ```
+  $ ./manage.py test --verbose
+  ```

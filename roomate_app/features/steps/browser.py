@@ -1,5 +1,5 @@
 from contextlib import contextmanager
-
+import aloe_webdriver.django
 import aloe_webdriver
 from aloe import around, world
 from selenium import webdriver

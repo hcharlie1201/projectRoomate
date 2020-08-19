@@ -8,6 +8,5 @@ Feature: View Hompage
     #     Given I am on the hompage
     Scenario: See the login button and the signup button
         Given I am on the home page
-
-        # Then I should see "Login"
-        # And I should see "Sign Up"
+        Then I should see "Login"
+        And I should see "Sign Up"

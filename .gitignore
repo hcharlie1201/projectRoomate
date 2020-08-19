@@ -4,3 +4,6 @@ venv
 */migrations/__pycache__
 .coverage
 covhtml
+geckodriver.log
+geckodriver-v0.27.0-linux64.tar.gz
+geckodriver

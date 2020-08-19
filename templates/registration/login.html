@@ -3,15 +3,22 @@
 
 <div class="container h-100">
   <div class="row h-100 justify-content-center align-items-center">
-    <div id="card" class="card text-center mb-3">
+    <div id="card" class="card card-size-login mb-3">
+      <div class="card-header">
+        Sign In
+      </div>
       <div class="card-body">
         <form class="form-signin" method="post" action="{% url 'users:login' %}">
-          <h5 class="card-title">Please sign in</h5>
-          <label for="inputUsername" class="sr-only">Username</label>
-          <input type="username" id="inputUsername" class="form-control form-space" placeholder="Username" required autofocus>
-          <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" id="inputPassword" class="form-control form-space" placeholder="Password" required>
-          <button class="btn btn-primary form-space" type="submit">Sign in</button>
+          {% csrf_token %}
+          <label for="{{ form.username.id_for_label }}" class="sr-only">Username</label>
+          <input type="username" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" class="form-control form-space" placeholder="Username" required>
+          <label for="{{ form.password.id_for_label }}" class="sr-only">Password</label>
+          <input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" class="form-control form-space" placeholder="Password" required>
+          {% if form.errors %}
+            <p class="card-text text-danger">Your username and password didn't match. Please try again.</p>
+          {% endif %}
+          <button class="btn btn-info form-space" type="submit">Sign in</button>
+          <input type="hidden" name="next" value="{% url 'roomate_app:dashboard' %}"/>
         </form>
       </div>
   </div>

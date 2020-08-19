@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'roomate_app',
+    'users',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -40,8 +41,7 @@ INSTALLED_APPS = [
     'django_nose',
     'aloe_django',
     'coverage',
-    'roomate_app',
-    'users'
+    'django.contrib.admin',
 ]
 
 MIDDLEWARE = [

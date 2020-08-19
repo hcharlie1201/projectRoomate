@@ -39,12 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_nose',
     'aloe_django',
-<<<<<<< HEAD
     'coverage',
     'roomate_app'
-=======
-    'roomate_app',
->>>>>>> 15640b28f9aaa2c97cd8e58383d43f031602fc29
+
 ]
 
 MIDDLEWARE = [

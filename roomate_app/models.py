@@ -1,12 +1,15 @@
 from django.db import models
+from django.contrib.auth.models import User
 import json
+import secrets
 
 # Create your models here.
 
 class Apartment(models.Model):
     apt_id = models.AutoField(primary_key=True)
     date_added = models.DateTimeField(auto_now_add=True)
-
+    token = models.CharField(max_length=100, default=secrets.token_urlsafe(16))
+    
     class Meta: 
         verbose_name_plural = "apartments"
 
@@ -14,17 +17,14 @@ class Apartment(models.Model):
         return "Apartment " + str(self.apt_id)
 
 
-class User(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
+class MyUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     myApt = models.ForeignKey(Apartment, null=True, on_delete=models.SET_NULL)
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        verbose_name_plural = "users"
+        verbose_name_plural = "myusers"
 
-    def __str__(self):
-        return self.name
 
 class Chore(models.Model):
     name = models.CharField(max_length=100)

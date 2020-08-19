@@ -1,8 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import User, Apartment, Chore
+from .models import MyUser, Apartment, Chore
 
-admin.site.register(User)
+admin.site.register(MyUser)
 admin.site.register(Apartment)
 admin.site.register(Chore)

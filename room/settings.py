@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_nose',
     'aloe_django',
-    'roomate_app',
+    'coverage',
+    'roomate_app'
+
 ]
 
 MIDDLEWARE = [
@@ -121,8 +123,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = '/static/'
 
-# aloe stuff
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [    
+    '--cover-erase',
+    '--cover-package=roomate_app', # Change `MY_APP` to your `app` name
+]
 
 GHERKIN_TEST_CLASS = 'aloe_django.TestCase'
 

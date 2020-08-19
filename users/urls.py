@@ -1,11 +1,13 @@
 from django.urls import path, include
 from django.contrib.auth import views as views_builtin
-from . import views
+from django.views.generic.edit import CreateView
+from . import forms
 
 app_name = 'users'
 urlpatterns = [
     # Include default auth urls.
     path('', include('django.contrib.auth.urls')),
     # Registration page.
-    path('register/', views.register, name='register'),
+    path('register/', CreateView.as_view(template_name='registration/register.html',
+        form_class=forms.RegisterUserForm, success_url='dashboard/'), name='register'),
 ]

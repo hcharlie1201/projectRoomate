@@ -18,6 +18,5 @@ $ python manage.py runserver
 Install the Environments 
 
 ```
-$ pip freeze > requirements.txt
 $ pip install -r requirements.txt
 ```

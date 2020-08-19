@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'django_nose',
     'aloe_django',
     'coverage',
-    'roomate_app'
-
+    'roomate_app',
+    'users'
 ]
 
 MIDDLEWARE = [

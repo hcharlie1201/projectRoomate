@@ -1,0 +1,12 @@
+.btn-space {
+    margin-top: 15px;
+}
+
+.form-space {
+    margin-top: 35px;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}

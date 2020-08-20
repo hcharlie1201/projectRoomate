@@ -12,16 +12,6 @@ def register(request):
 
         if form.is_valid():
             auth_user = form.save()
-
-            # username = form.cleaned_data.get('username')
-            # password = form.cleaned_data.get('password1')
-            
-            # auth_user = authenticate(username=username, password=password)
-
-            # my_user = MyUser()
-            # my_user.user = auth_user
-            # my_user.save()
-
             login(request, auth_user)
             return redirect('roomate_app:dashboard')
 

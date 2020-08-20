@@ -12,7 +12,7 @@ def index(request):
 @login_required
 def dashboard(request):
     #check if the user has an apartment or not
-    return render(request, 'roomate_app/dummy.html')
+    return render(request, 'roomate_app/dashboard.html')
 
 #Create a new apartment.
 def new_apt(request):
@@ -45,5 +45,5 @@ def assign_apt(request):
         form = JoinApartmentForm()
         
     context = {'form': form}
-    return render(request, 'roomate_app/dummy.html', context)
+    return render(request, 'roomate_app/joinApartment.html', context)
     #replate dummy.html with something else

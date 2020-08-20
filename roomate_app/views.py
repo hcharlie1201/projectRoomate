@@ -2,12 +2,14 @@ from django.shortcuts import render, redirect
 from .models import Apartment, MyUser, Chore
 from django.contrib.auth.models import User
 from .forms import JoinApartmentForm
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 # Create your views here.
 def index(request):
     return render(request, 'roomate_app/index.html')
 
+@login_required
 def dashboard(request):
     #check if the user has an apartment or not
     return render(request, 'roomate_app/dummy.html')

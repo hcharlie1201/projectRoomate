@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 import json
 import secrets
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # Create your models here.
 
 class Apartment(models.Model):
@@ -24,6 +25,15 @@ class MyUser(models.Model):
 
     class Meta:
         verbose_name_plural = "myusers"
+
+@receiver(post_save, sender=User)
+def create_user_myuser(sender, instance, created, **kwargs):
+    if created:
+        MyUser.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_myuser(sender, instance, **kwargs):
+    instance.myuser.save()
 
 
 class Chore(models.Model):

@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'roomate_app',
+    'users',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -40,8 +41,7 @@ INSTALLED_APPS = [
     'django_nose',
     'aloe_django',
     'coverage',
-    'roomate_app',
-    'users'
+    'django.contrib.admin',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +133,5 @@ NOSE_ARGS = [
 GHERKIN_TEST_CLASS = 'aloe_django.TestCase'
 
 GHERKIN_TEST_RUNNER = 'aloe_django.runner.GherkinTestRunner'
+
+LOGIN_URL = 'users:login'

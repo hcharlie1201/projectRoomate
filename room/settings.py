@@ -133,3 +133,5 @@ NOSE_ARGS = [
 GHERKIN_TEST_CLASS = 'aloe_django.TestCase'
 
 GHERKIN_TEST_RUNNER = 'aloe_django.runner.GherkinTestRunner'
+
+LOGIN_URL = 'users:login'

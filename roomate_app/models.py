@@ -38,7 +38,7 @@ def save_user_myuser(sender, instance, **kwargs):
 
 
 class Chore(models.Model):
-    apt = models.ForeignKey(Apartment, null=True, on_delete=models.CASCADE)
+    apt_id = models.ForeignKey(Apartment, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     creator = models.CharField(max_length=100)
     assignees = models.CharField(max_length=500) #optional

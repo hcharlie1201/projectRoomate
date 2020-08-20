@@ -2,6 +2,10 @@
 venv
 */__pycache__
 */migrations/__pycache__
-db.sqlite3
+*/features/steps/__pycache__
 .coverage
 covhtml
+geckodriver.log
+geckodriver-v0.27.0-linux64.tar.gz
+geckodriver
+db.sqlite3

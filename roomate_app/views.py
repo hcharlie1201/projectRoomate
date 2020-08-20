@@ -21,9 +21,10 @@ def new_apt(request):
         messages.warning(request, 'Failed To Create An Apartment. Please try again.')
         return redirect('roomate_app:dashboard')
     
-    my_apartment = Apartment.objects.create()
+    my_apartment = Apartment()
     current_user = request.user
     current_user.myuser.myApt = my_apartment
+    my_apartment.save()
     current_user.save()
     messages.success(request, 'You Have Successfuly Created A New Apartment!!!')
     return redirect('roomate_app:dashboard')
@@ -35,15 +36,19 @@ def assign_apt(request):
         form = JoinApartmentForm(request.POST)
         if form.is_valid():
             input_token = form.cleaned_data['apt_token']
-            current_user.myuser.myApt = Apartment.objects.get(token=input_token)
-            current_user.save()
-            messages.success(request, 'You Have Successfuly Joined The Apartment!!!')
-            return redirect('roomate_app:dashboard')
+            apt_list = Apartment.objects.filter(token=input_token)
+            if apt_list.count() > 0:
+                current_user.myuser.myApt = Apartment.objects.get(token=input_token)
+                current_user.save()
+                messages.success(request, 'You Have Successfuly Joined The Apartment!!!')
+                return redirect('roomate_app:dashboard')
+            else:
+                #need to raise a flash here
+                messages.error(request, 'Failed to join an Apartment. Please verify your token.')
+                form = JoinApartmentForm()
     else:
-        #need to raise a flash here
-        messages.warning(request, 'Failed To Join An Apartment. Please Verify Your Token.')
         form = JoinApartmentForm()
-        
+
     context = {'form': form}
     return render(request, 'roomate_app/joinApartment.html', context)
     #replate dummy.html with something else

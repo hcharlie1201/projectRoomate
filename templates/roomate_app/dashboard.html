@@ -6,7 +6,11 @@
     <div class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div>
-                <a class="btn btn-info btn-lg apt-btn-space" href="{% url 'users:login' %}" role="button">Create a new Apartment</a>
+                <form method="post" action="{% url 'roomate_app:newApartment' %}">
+                    {% csrf_token %}
+                    <button class="btn btn-info btn-lg apt-btn-space" name="submit">Create a new Apartment</button>
+                    <input type="hidden" name="next" value="{% url 'roomate_app:dashboard' %}"/>
+                </form>
             </div>
             <div>
                 <a class="btn btn-info btn-lg apt-btn-space" href="{% url 'roomate_app:joinApartment' %}" role="button">Join an existing Apartment</a>

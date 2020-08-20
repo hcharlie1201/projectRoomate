@@ -32,3 +32,9 @@ html, body {
     padding-bottom: 5%;
     width: 35%;
 }
+
+.error-font {
+    margin-left: 2%;
+    font-size: 0.95em;
+    color: red;
+}

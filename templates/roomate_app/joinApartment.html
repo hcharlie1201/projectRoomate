@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
-        <div id="card" class="card card-size-signup mb-3">
+        <div id="card" class="card mb-3">
             <div class="card-header">
                 Enter the Apartment token
             </div>
@@ -11,8 +11,10 @@
                     {% csrf_token %}
                     <label for="{{ form.apt_token.id_for_label }}" class="sr-only">Apartment Token</label>
                     <input type="apt_token" id="{{ form.apt_token.id_for_label }}" name="{{ form.apt_token.html_name }}" class="form-control" placeholder="Apartment Token" required>
-                    {% if form.errors %}
-                        <p class="card-text text-danger">{{form.errors.as_text|cut:"* " }}</p>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="error-font">{{ message }}</p>
+                        {% endfor %}
                     {% endif %}
                     <button class="btn btn-info form-space" name="submit">Enter</button>
                     <input type="hidden" name="next" value="{% url 'roomate_app:dashboard' %}"/>

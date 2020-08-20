@@ -3,10 +3,27 @@
 }
 
 .form-space {
-    margin-top: 35px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.card-size-login {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 35%;
+}
+
+.card-size-signup {
+    width: 35%;
 }
 
 html, body {
     margin: 0;
     height: 100%;
+}
+
+.card-size-home {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    width: 35%;
 }

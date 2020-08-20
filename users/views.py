@@ -11,10 +11,15 @@ def register(request):
         form = forms.RegisterUserForm(data=request.POST)
 
         if form.is_valid():
-            auth_user = form.save()
+            form.save()
+
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            
+            auth_user = authenticate(username=username, password=password)
 
             my_user = MyUser()
-            my_user.user_id = auth_user.id
+            my_user.user = auth_user
             my_user.save()
 
             login(request, auth_user)

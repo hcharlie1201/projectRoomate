@@ -16,22 +16,17 @@ class AptTests(TestCase):
 
         self.dummy_apartment = Apartment.objects.create()
 
-        self.dummy_user1 = MyUser()
-        self.dummy_user2 = MyUser()
-
-        self.dummy_user1.user_id = self.auth_user1.id
-        self.dummy_user2.user_id = self.auth_user2.id
-        self.dummy_user1.save()
-        self.dummy_user2.save()
 
     def test_new_apartment(self):
         self.client.login(username='user1', password='abc123456789')
         _ = self.client.post('/newapt/', {})
+        self.auth_user1 = User.objects.get(pk=1)
         self.assertIsNotNone(self.auth_user1.myuser.myApt)
     
     def test_join_apartment(self):
         self.client.login(username='user2', password='abc123456789')
         _ = self.client.post('/joinapt/', {'apt_token':self.dummy_apartment.token})
+        self.auth_user2 = User.objects.get(pk=2)
         self.assertIsNotNone(self.auth_user2.myuser.myApt)
 
     def test_new_apartment_sad(self):

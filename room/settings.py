@@ -130,8 +130,8 @@ NOSE_ARGS = [
     '--cover-package=roomate_app', # Change `MY_APP` to your `app` name
 ]
 
-GHERKIN_TEST_CLASS = 'aloe_django.TestCase'
+#GHERKIN_TEST_CLASS = 'aloe_django.TestCase'
 
-GHERKIN_TEST_RUNNER = 'aloe_django.runner.GherkinTestRunner'
+#GHERKIN_TEST_RUNNER = 'aloe_django.runner.GherkinTestRunner'
 
 LOGIN_URL = 'users:login'

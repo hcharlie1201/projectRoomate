@@ -2,25 +2,45 @@
 {% block content %}
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
-        <div id="card" class="card card-size-login mb-3">
+        <div id="card" class="card card-size-signup mb-3">
             <div class="card-header">
                 Sign Up
             </div>
             <div class="card-body">
                 <form method="post" action="{% url 'users:register' %}">
                     {% csrf_token %}
-                    <label for="{{ form.username.id_for_label }}" class="sr-only">Username</label>
-                    <input type="username" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" class="form-control form-space" placeholder="Username" required>
-                    {{ form.username.errors }}
-                    <label for="{{ form.email.id_for_label }}" class="sr-only">Email</label>
-                    <input type="email" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}" class="form-control form-space" placeholder="Email" required>
-                    {{ form.email.errors }}
-                    <label for="{{ form.password1.id_for_label }}" class="sr-only">Password</label>
-                    <input type="password" id="{{ form.password1.id_for_label }}" name="{{ form.password1.html_name }}" class="form-control form-space" placeholder="Password" required>
-                    {{ form.password1.errors }}
-                    <label for="{{ form.password2.id_for_label }}" class="sr-only">Confirm Password</label>
-                    <input type="password" id="{{ form.password2.id_for_label }}" name="{{ form.password2.html_name }}" class="form-control form-space" placeholder="Confirm Password" required>
-                    {{ form.password2.errors }}
+                    <div class="form-space">
+                        <label for="{{ form.username.id_for_label }}" class="sr-only">Username</label>
+                        <input type="username" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" class="form-control" placeholder="Username" required>
+                        {% if form.username.errors %}
+                            <p class="card-text text-danger">{{form.errors.username.as_text|cut:"* " }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="form-space">
+                        <label for="{{ form.email.id_for_label }}" class="sr-only">Email</label>
+                        <input type="email" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}" class="form-control" placeholder="Email" required>
+                        {% if form.email.errors %}
+                            <p class="card-text text-danger">{{form.errors.email.as_text|cut:"* " }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="form-space">
+                        <label for="{{ form.password1.id_for_label }}" class="sr-only">Password</label>
+                        <input type="password" id="{{ form.password1.id_for_label }}" name="{{ form.password1.html_name }}" class="form-control" placeholder="Password" required>
+                        {% if form.password1.errors %}
+                            <p class="card-text text-danger">{{form.errors.password1.as_text|cut:"* " }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="form-space">
+                        <label for="{{ form.password2.id_for_label }}" class="sr-only">Confirm Password</label>
+                        <input type="password" id="{{ form.password2.id_for_label }}" name="{{ form.password2.html_name }}" class="form-control" placeholder="Confirm Password" required>
+                        {% if form.password2.errors %}
+                            <ul class="errorlist">
+                            {% for errors in form.password2.errors %}
+                                <li class="card-text text-danger">{{ errors }}</li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
                     <button class="btn btn-info form-space" name="submit">Sign Up</button>
                     <input type="hidden" name="next" value="{% url 'roomate_app:dashboard' %}"/>
                 </form>

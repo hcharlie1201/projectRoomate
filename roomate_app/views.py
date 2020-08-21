@@ -12,7 +12,8 @@ def index(request):
 @login_required
 def dashboard(request):
     #check if the user has an apartment or not
-    return render(request, 'roomate_app/dashboard.html')
+    chores = Chore.objects.filter(apt_id=request.user.myuser.myApt)
+    return render(request, 'roomate_app/dashboard.html', {'chores': chores})
 
 #Create a new apartment.
 def new_apt(request):

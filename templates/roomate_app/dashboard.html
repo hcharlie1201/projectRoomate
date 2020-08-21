@@ -1,7 +1,11 @@
 {% extends "base.html" %} 
 {% block content %}
 {% if user.myuser.myApt %}
-    <p> has apartment </p>
+    {% if chores %}
+        <p>Yes chores</p>
+    {% else %}
+        <p> No chores</p>
+    {% endif %}
 {% else %}
     <div class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">

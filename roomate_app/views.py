@@ -20,11 +20,11 @@ def new_apt(request):
         #need to raise a flash here
         messages.warning(request, 'Failed To Create An Apartment. Please try again.')
         return redirect('roomate_app:dashboard')
-    my_apartment = Apartment()
-    my_apartment.save()
+    
+    my_apartment = Apartment.objects.create()
     current_user = request.user
     current_user.myuser.myApt = my_apartment
-    current_user.myuser.save()
+    current_user.save()
     messages.success(request, 'You Have Successfuly Created A New Apartment!!!')
     return redirect('roomate_app:dashboard')
 
@@ -36,7 +36,7 @@ def assign_apt(request):
         if form.is_valid():
             input_token = form.cleaned_data['apt_token']
             current_user.myuser.myApt = Apartment.objects.get(token=input_token)
-            current_user.myuser.save()
+            current_user.save()
             messages.success(request, 'You Have Successfuly Joined The Apartment!!!')
             return redirect('roomate_app:dashboard')
     else:

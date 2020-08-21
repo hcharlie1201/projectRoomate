@@ -18,7 +18,7 @@ def main():
     # Test Coverage
     is_testing = 'test' in sys.argv
     if is_testing:
-        cov = coverage.coverage(source=['roomate_app'], omit=['*/tests/*'])
+        cov = coverage.coverage(source=['roomate_app', 'users'], omit=['*/tests/*'])
         cov.set_option('report:show_missing', True)
         cov.erase()
         cov.start()

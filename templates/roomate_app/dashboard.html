@@ -2,7 +2,11 @@
 {% block content %}
 {% if user.myuser.myApt %}
     {% if chores %}
-        <p>Yes chores</p>
+        <ul class="list-group w-25 border mb-2 p-2">
+        {% for c in chores %}
+            <li class="list-group-item bg-dark text-light pb-2">{{ c }}</li>
+        {% endfor %}
+    </ul>
     {% else %}
         <p> No chores</p>
     {% endif %}

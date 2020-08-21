@@ -57,9 +57,17 @@ class HomepageTests(StaticLiveServerTestCase):
     #The user is able to access the login page
     def test_access_login_BDD(self):
         self.selenium.get(self.live_server_url)
-        response = self.selenium.find_element_by_xpath('/html/body/div/div/div/div/div[1]/a').click()
+        self.selenium.find_element_by_xpath('/html/body/div/div/div/div/div[1]/a').click()
         self.assertTemplateUsed('registration/login.html')
-    
+        self.assertEqual(self.selenium.current_url, '%s%s' % (self.live_server_url, '/users/login/'))
+
+    #The user is able to access the registration page
+    def test_access_registration_BDD(self):
+        self.selenium.get(self.live_server_url)
+        self.selenium.find_element_by_xpath('/html/body/div/div/div/div/div[2]/a').click()
+        self.assertTemplateUsed('registration/register.html')
+        self.assertEqual(self.selenium.current_url, '%s%s' % (self.live_server_url, '/users/register/'))
+
     #The logged in user can logout
     def test_user_logout_BDD(self):
         timeout = 5

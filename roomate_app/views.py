@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from .models import Apartment, MyUser, Chore
 from django.contrib.auth.models import User
-from .forms import JoinApartmentForm
+from .forms import JoinApartmentForm, CreateChoreForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 # Create your views here.
 def index(request):
+    if request.user.is_authenticated:  
+        return redirect('roomate_app:dashboard')
     return render(request, 'roomate_app/index.html')
 
 @login_required
@@ -45,11 +47,31 @@ def assign_apt(request):
                 return redirect('roomate_app:dashboard')
             else:
                 #need to raise a flash here
-                messages.error(request, 'Failed to join an Apartment. Please verify your token.')
+                messages.warning(request, 'Failed To Join An Apartment. Please Verify Your Token.')
                 form = JoinApartmentForm()
     else:
+        #need to raise a flash here
+        #messages.warning(request, 'Failed To Join An Apartment. Please Verify Your Token.')
         form = JoinApartmentForm()
 
     context = {'form': form}
     return render(request, 'roomate_app/joinApartment.html', context)
     #replate dummy.html with something else
+
+#Create a new chore
+def new_chore(request):
+    current_user = request.user
+    apt_id = current_user.myuser.myApt
+    if request.method == 'POST':
+        form = CreateChoreForm(request.POST)
+        if form.is_valid():
+            input_name = form.cleaned_data['name']
+            new_chore = Chore(apt_id=apt_id, name=input_name, creator=current_user.username)
+            new_chore.save()
+            messages.success(request, 'You have successfully created a Chore!')
+            return redirect('roomate_app:dashboard')
+    
+    else:
+        form = CreateChoreForm()
+    context = {'form': form}
+    return render(request, 'roomate_app/newChore.html', context)

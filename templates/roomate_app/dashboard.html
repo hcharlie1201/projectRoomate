@@ -2,13 +2,31 @@
 {% block content %}
 {% if user.myuser.myApt %}
     {% if chores %}
-        <ul class="list-group w-25 border mb-2 p-2">
+        <ul>
         {% for c in chores %}
-            <li class="list-group-item bg-dark text-light pb-2">{{ c }}</li>
+            <div class="container w-100 h-100 chores-size">
+                <div class="row h-100 justify-content-center align-items-center">
+                    <div id="card" class="card mb-3 w-100">
+                        <div class="card-body">
+                            <p> {{ c }} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
+        <div class="container w-100 h-100 chores-size">
+            <div class="row h-100 justify-content-center align-items-center">
+                <a class="btn btn-info btn-lg btn-block chore-btn-size" href="{% url 'roomate_app:newChore' %}" role="button">
+                    <div class="vertical">Create a new Chore</div>
+                </a>
+            </div>
+        </div>
+        </ul>
     {% else %}
         <p> No chores</p>
+        <div>
+            <a class="btn btn-info btn-lg apt-btn-space" href="{% url 'roomate_app:newChore' %}" role="button">Create a new Chore</a>
+        </div>
     {% endif %}
 {% else %}
     <div class="container h-100">

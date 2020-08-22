@@ -32,6 +32,10 @@ html, body {
     height: 100%;
 }
 
+textarea {
+    resize: none;
+}
+
 .card-size-home {
     padding-top: 5%;
     padding-bottom: 5%;
@@ -51,4 +55,9 @@ html, body {
 .chore-btn-size {
     height: 4rem;
     padding: 1rem;
+}
+
+.chore-card-size {
+    width: 32rem;
+    height: 24rem;
 }

@@ -18,6 +18,7 @@ def dashboard(request):
     return render(request, 'roomate_app/dashboard.html', {'chores': chores})
 
 #Create a new apartment.
+@login_required
 def new_apt(request):
     if request.method != 'POST':
         #need to raise a flash here
@@ -33,6 +34,7 @@ def new_apt(request):
     return redirect('roomate_app:dashboard')
 
 #Get an existing apartment.
+@login_required
 def assign_apt(request):
     current_user = request.user
     if request.method == 'POST':
@@ -59,6 +61,7 @@ def assign_apt(request):
     #replate dummy.html with something else
 
 #Create a new chore
+@login_required
 def new_chore(request):
     current_user = request.user
     apt_id = current_user.myuser.myApt
@@ -66,7 +69,8 @@ def new_chore(request):
         form = CreateChoreForm(request.POST)
         if form.is_valid():
             input_name = form.cleaned_data['name']
-            new_chore = Chore(apt_id=apt_id, name=input_name, creator=current_user.username)
+            input_desc = form.cleaned_data['description']
+            new_chore = Chore(apt_id=apt_id, name=input_name, creator=current_user, description=input_desc)
             new_chore.save()
             messages.success(request, 'You have successfully created a Chore!')
             return redirect('roomate_app:dashboard')

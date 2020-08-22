@@ -1,0 +1,28 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div id="card" class="card mb-3 chore-card-size">
+            <div class="card-header">
+                Create a new Chore
+            </div>
+            <div class="card-body">
+                <form method="post" action="{% url 'roomate_app:newChore' %}">
+                    {% csrf_token %}
+                    <label for="{{ form.name.id_for_label }}" class="sr-only">Name</label>
+                    <input type="name" id="{{ form.name.id_for_label }}" name="{{ form.name.html_name }}" class="form-control" placeholder="Name" required>
+                    <label for="{{ form.description.id_for_label }}" class="sr-only">Description</label>
+                    <textarea id="{{ form.description.id_for_label }}" name="{{ form.description.html_name }}" class="form-control" placeholder="Description" required></textarea>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="error-font">{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    <button class="btn btn-info form-space" name="submit">Enter</button>
+                    <input type="hidden" name="next" value="{% url 'roomate_app:dashboard' %}"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

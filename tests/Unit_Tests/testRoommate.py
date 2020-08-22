@@ -37,6 +37,6 @@ class AptTests(TestCase):
     
     def test_join_apartment_sad(self):
         self.client.login(username='user1', password='abc123456789')
-        response = self.client.get('/joinapt/', {})
+        response = self.client.post('/joinapt/', {'apt_token': 'abc'})
         warning = list(get_messages(response.wsgi_request))
         self.assertEqual('Failed To Join An Apartment. Please Verify Your Token.', str(warning[0]))

@@ -30,7 +30,6 @@ def new_apt(request):
     current_user.myuser.myApt = my_apartment
     my_apartment.save()
     current_user.save()
-    messages.success(request, 'You Have Successfuly Created A New Apartment!!!')
     return redirect('roomate_app:dashboard')
 
 #Get an existing apartment.
@@ -69,7 +68,7 @@ def new_chore(request):
             input_desc = form.cleaned_data['description']
             new_chore = Chore(apt_id=apt_id, name=input_name, creator=current_user, description=input_desc)
             new_chore.save()
-            messages.success(request, 'You have successfully created a Chore!')
+            #messages.success(request, 'You have successfully created a Chore!')
             return redirect('roomate_app:dashboard')
     
     else:

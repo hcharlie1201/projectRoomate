@@ -30,7 +30,6 @@ def new_apt(request):
     current_user.myuser.myApt = my_apartment
     my_apartment.save()
     current_user.save()
-    messages.success(request, 'You Have Successfuly Created A New Apartment!!!')
     return redirect('roomate_app:dashboard')
 
 #Get an existing apartment.
@@ -45,7 +44,6 @@ def assign_apt(request):
             if apt_list.count() > 0:
                 current_user.myuser.myApt = Apartment.objects.get(token=input_token)
                 current_user.save()
-                messages.success(request, 'You Have Successfuly Joined The Apartment!!!')
                 return redirect('roomate_app:dashboard')
             else:
                 #need to raise a flash here
@@ -53,12 +51,10 @@ def assign_apt(request):
                 form = JoinApartmentForm()
     else:
         #need to raise a flash here
-        #messages.warning(request, 'Failed To Join An Apartment. Please Verify Your Token.')
         form = JoinApartmentForm()
 
     context = {'form': form}
     return render(request, 'roomate_app/joinApartment.html', context)
-    #replate dummy.html with something else
 
 #Create a new chore
 @login_required
@@ -72,7 +68,7 @@ def new_chore(request):
             input_desc = form.cleaned_data['description']
             new_chore = Chore(apt_id=apt_id, name=input_name, creator=current_user, description=input_desc)
             new_chore.save()
-            messages.success(request, 'You have successfully created a Chore!')
+            #messages.success(request, 'You have successfully created a Chore!')
             return redirect('roomate_app:dashboard')
     
     else:

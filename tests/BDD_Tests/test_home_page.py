@@ -3,7 +3,6 @@ from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from django.contrib.auth.models import User
-from django.test import tag
 
 #Feature: Registered user can login/logout, and new user and sign up
 class HomepageTests(StaticLiveServerTestCase):

@@ -45,7 +45,6 @@ def assign_apt(request):
             if apt_list.count() > 0:
                 current_user.myuser.myApt = Apartment.objects.get(token=input_token)
                 current_user.save()
-                messages.success(request, 'You Have Successfuly Joined The Apartment!!!')
                 return redirect('roomate_app:dashboard')
             else:
                 #need to raise a flash here
@@ -53,12 +52,10 @@ def assign_apt(request):
                 form = JoinApartmentForm()
     else:
         #need to raise a flash here
-        #messages.warning(request, 'Failed To Join An Apartment. Please Verify Your Token.')
         form = JoinApartmentForm()
 
     context = {'form': form}
     return render(request, 'roomate_app/joinApartment.html', context)
-    #replate dummy.html with something else
 
 #Create a new chore
 @login_required

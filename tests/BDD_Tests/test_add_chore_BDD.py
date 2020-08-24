@@ -76,6 +76,17 @@ class ChoreAddTests(StaticLiveServerTestCase):
 
         self.assertIn("wash dishes", result.text)
         self.assertIn("user1", result.text)
+    
+    #User should delete a chore
+    def test_delete_chore(self):
+        self.selenium.find_element_by_xpath('/html/body/div/a').click()
+        self.selenium.find_element_by_name('name').send_keys('wash dishes')
+        self.selenium.find_element_by_name(
+            'description').send_keys('wash dishes')
+        self.selenium.find_element_by_name('submit').click()
+        self.selenium.find_element_by_link_text('Delete').click()
+        result = self.selenium.find_element_by_xpath('/html/body')
+        self.assertIn("Successfully delete.", result.text)
 
     # User can add a chore to an apartment that already has chores and they are also the owner
     def test_add_chore_w_chore_apt_BDD_1(self):

@@ -85,5 +85,6 @@ def new_chore(request):
 def delete_chore(request, chore_id =None):
     object = Chore.objects.get(id=chore_id)
     object.delete()
+    messages.warning(request, 'Successfully delete.')
     return redirect('roomate_app:dashboard')
 

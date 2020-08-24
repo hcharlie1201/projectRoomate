@@ -1,5 +1,6 @@
 .vscode
 venv
+ll_env
 __pycache__
 **/__pycache__
 */migrations/__pycache__

@@ -80,3 +80,10 @@ def new_chore(request):
     numUsers = MyUser.objects.filter(myApt=apt_id).count()
     context = {'form': form, 'numUsers': numUsers }
     return render(request, 'roomate_app/newChore.html', context)
+
+@login_required
+def delete_chore(request, chore_id =None):
+    object = Chore.objects.get(id=chore_id)
+    object.delete()
+    return redirect('roomate_app:dashboard')
+

@@ -62,16 +62,21 @@ def new_chore(request):
     current_user = request.user
     apt_id = current_user.myuser.myApt
     if request.method == 'POST':
-        form = CreateChoreForm(request.POST)
+        form = CreateChoreForm(request.POST, user=current_user)
         if form.is_valid():
             input_name = form.cleaned_data['name']
             input_desc = form.cleaned_data['description']
+            input_assignees = form.cleaned_data['assignees']
             new_chore = Chore(apt_id=apt_id, name=input_name, creator=current_user, description=input_desc)
             new_chore.save()
+            for assignee in input_assignees:
+                new_chore.assignees.add(User.objects.get(username=assignee))
             #messages.success(request, 'You have successfully created a Chore!')
             return redirect('roomate_app:dashboard')
     
     else:
-        form = CreateChoreForm()
-    context = {'form': form}
+        form = CreateChoreForm(user=current_user)
+        
+    numUsers = MyUser.objects.filter(myApt=apt_id).count()
+    context = {'form': form, 'numUsers': numUsers }
     return render(request, 'roomate_app/newChore.html', context)

@@ -1,5 +1,14 @@
 {% extends "base.html" %} 
 {% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-primary" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+</ul>
+{% endif %}
 {% if user.myuser.myApt %}
     {% if chores %}
         <ul>
@@ -14,6 +23,7 @@
                             {% for a in c.assignees.all %}
                                 <p> {{ a }} </p>
                             {% endfor %}
+                            <a href="{% url 'roomate_app:delete_a_chore' c.id%}"><i class="fa fa-trash">Delete</i></a>
                         </div>
                     </div>
                 </div>

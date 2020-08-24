@@ -4,14 +4,16 @@ import json
 import secrets
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from hashlib import sha1
 # Create your models here.
+
 
 class Apartment(models.Model):
     apt_id = models.AutoField(primary_key=True)
     date_added = models.DateTimeField(auto_now_add=True)
-    token = models.CharField(max_length=100, default=secrets.token_urlsafe(16))
-    
-    class Meta: 
+    token = models.CharField(max_length=100, default=sha1((secrets.token_urlsafe() + str(apt_id)).encode('utf-8')).hexdigest())
+
+    class Meta:
         verbose_name_plural = "apartments"
 
     def __str__(self):
@@ -26,10 +28,12 @@ class MyUser(models.Model):
     class Meta:
         verbose_name_plural = "myusers"
 
+
 @receiver(post_save, sender=User)
 def create_user_myuser(sender, instance, created, **kwargs):
     if created:
         MyUser.objects.create(user=instance)
+
 
 @receiver(post_save, sender=User)
 def save_user_myuser(sender, instance, **kwargs):
@@ -37,18 +41,21 @@ def save_user_myuser(sender, instance, **kwargs):
 
 
 class Chore(models.Model):
+    apt_id = models.ForeignKey(Apartment, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    creator = models.CharField(max_length=100)
-    assignees = models.CharField(max_length=500) #optional
+    creator = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name='creator_user')
+    assignees = models.ManyToManyField(User, blank=True)
+    description = models.CharField(max_length=500, default="Description of Chore")
     complete = models.BooleanField(default=False)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def set_assignees(self, nameList):
         self.assignees = json.dumps(nameList)
+
     def get_assignees(self):
         return json.loads(self.assignees)
 
-    class Meta: 
+    class Meta:
         verbose_name_plural = "chores"
 
     def __str__(self):

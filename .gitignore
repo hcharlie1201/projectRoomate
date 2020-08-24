@@ -1,6 +1,8 @@
 .vscode
 venv
-*/__pycache__
+ll_env
+__pycache__
+**/__pycache__
 */migrations/__pycache__
 */features/steps/__pycache__
 .coverage
@@ -9,3 +11,4 @@ geckodriver.log
 geckodriver-v0.27.0-linux64.tar.gz
 geckodriver
 db.sqlite3
+tests.db

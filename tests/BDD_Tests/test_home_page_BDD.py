@@ -3,7 +3,6 @@ from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from django.contrib.auth.models import User
-from django.test import tag
 
 #Feature: Registered user can login/logout, and new user and sign up
 class HomepageTests(StaticLiveServerTestCase):
@@ -36,7 +35,7 @@ class HomepageTests(StaticLiveServerTestCase):
         WebDriverWait(self.selenium, timeout).until(
             lambda driver: driver.find_element_by_tag_name('body'))
         result = self.selenium.find_element_by_xpath('/html/body/div')
-        self.assertIn("Hello 'user1'", result.text)
+        self.assertIn("Create a new Apartment", result.text)
 
 
     #A new user can register from the home page
@@ -75,7 +74,7 @@ class HomepageTests(StaticLiveServerTestCase):
         self.selenium.find_element_by_name("username").send_keys('user1')
         self.selenium.find_element_by_name("password").send_keys('abc1233456789')
         self.selenium.find_element_by_xpath('//*[@id="card"]/div/form/button').click()
-        self.selenium.find_element_by_xpath('//*[@id="navbarNav"]/ul/li[3]/a').click()
+        self.selenium.find_element_by_xpath('//*[@id="navbarNav"]/ul/li[2]/a').click()
         WebDriverWait(self.selenium, timeout).until(
             lambda driver: driver.find_element_by_tag_name('body'))
         

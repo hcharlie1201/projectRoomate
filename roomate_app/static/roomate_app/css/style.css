@@ -1,0 +1,63 @@
+.btn-space {
+    margin-top: 15px;
+}
+
+.apt-btn-space {
+    margin-right: 35px;
+    margin-left: 35px;
+}
+
+.form-space {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.card-size-login {
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 35%;
+}
+
+.card-size-signup {
+    width: 35%;
+}
+
+.card-size-apt {
+    width: 28rem;
+    height: 14rem;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+textarea {
+    resize: none;
+}
+
+.card-size-home {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    width: 35%;
+}
+
+.error-font {
+    margin-left: 2%;
+    font-size: 0.95em;
+    color: red;
+}
+
+.chores-size {
+    margin-top: 1rem;
+}
+
+.chore-btn-size {
+    height: 4rem;
+    padding: 1rem;
+}
+
+.chore-card-size {
+    width: 32rem;
+    height: 24rem;
+}

@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'aloe_django',
     'coverage',
     'django.contrib.admin',
-    'behave_django',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

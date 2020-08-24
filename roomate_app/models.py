@@ -11,8 +11,7 @@ from hashlib import sha1
 class Apartment(models.Model):
     apt_id = models.AutoField(primary_key=True)
     date_added = models.DateTimeField(auto_now_add=True)
-    token = models.CharField(max_length=100, default=sha1(
-        (secrets.token_urlsafe() + str(apt_id)).encode('utf-8')).hexdigest())
+    token = models.CharField(max_length=100, default=sha1((secrets.token_urlsafe() + str(apt_id)).encode('utf-8')).hexdigest())
 
     class Meta:
         verbose_name_plural = "apartments"
@@ -47,8 +46,7 @@ class Chore(models.Model):
     creator = models.ForeignKey(
         User, null=False, on_delete=models.CASCADE, related_name='creator_user')
     assignees = models.ManyToManyField(User, blank=True, default="")
-    description = models.CharField(
-        max_length=500, default="Description of Chore")
+    description = models.CharField(max_length=500, default="Description of Chore")
     complete = models.BooleanField(default=False)
     date_added = models.DateTimeField(auto_now_add=True)
 

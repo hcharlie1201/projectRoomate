@@ -47,7 +47,7 @@ class ChoreAddTests(StaticLiveServerTestCase):
     def test_user_leaves_apartment_BDD(self):
         timeout = 5
         self.selenium.get('%s%s' % (self.live_server_url, '/profile/'))
-        self.selenium.find_element_by_name("submit").click()
+        self.selenium.find_element_by_name("submit-leave").click()
         result = self.selenium.find_element_by_xpath('/html/body')
 
         self.assertIn("Create a new Apartment", result.text)

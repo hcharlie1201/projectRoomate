@@ -22,7 +22,7 @@
             </form>
             <form method="post" action="{% url 'roomate_app:leaveApt' %}" class="margin">
               {% csrf_token %}
-              <button class="btn btn-danger btn-block" name="submit">Leave the current Apartment</button>
+              <button class="btn btn-danger btn-block" name="submit-leave">Leave the current Apartment</button>
               <input type="hidden" name="next" value="{% url 'roomate_app:dashboard' %}"/>
             </form>
           </div>

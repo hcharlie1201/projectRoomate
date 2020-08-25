@@ -49,7 +49,8 @@ class HomepageTests(StaticLiveServerTestCase):
         WebDriverWait(self.selenium, timeout).until(
             lambda driver: driver.find_element_by_tag_name('body')) 
         result = self.selenium.find_element_by_xpath('/html/body')
-        self.assertIn("Username: user1", result.text)
+        self.assertIn("Username:", result.text)
+        self.assertIn("user1", result.text)
 
     #A new user can register from the home page
     def test_user_register_BDD(self):

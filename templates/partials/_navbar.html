@@ -6,14 +6,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <a class="nav-link text-white" href="#">Hello {{ request.user.username }} </a>
-        </li>
+        </li>-->
         <li class="nav-item">
-          <a class="nav-link text-white"" href="{% url 'roomate_app:profile' %}"><i class="fas fa-user"></i>Profile</a>
+          <a class="nav-link text-white" href="{% url 'roomate_app:profile' %}"><i class="fas fa-user trash"></i>Profile</a>
         </li>
         <li class="nav-item"> 
-          <a class="nav-link text-white" href="{% url 'users:logout' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+          <a class="nav-link text-white" href="{% url 'users:logout' %}"><i class="fas fa-sign-out-alt trash"></i>Logout</a>
         </li>
       </ul>
     </div>

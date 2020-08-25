@@ -95,4 +95,21 @@ def profile(request):
     context = {'username':username, 'email': email}
     return render(request, 'roomate_app/profile.html', context)
 
+@login_required
+def leave_apt(request):
+    if request.method != 'POST':
+        #need to raise a flash here
+        messages.warning(request, 'Failed to leave the Apartment. Please try again.')
+        return redirect('roomate_app:dashboard')
 
+    current_user = request.user
+    apt_id = current_user.myuser.myApt
+
+    my_user = current_user.myuser
+    roommates = MyUser.objects.filter(myApt=apt_id)
+    if roommates.count() == 1:
+        my_user.myApt.delete()
+
+    my_user.myApt = None
+    my_user.save()
+    return render(request, 'roomate_app/dashboard.html')

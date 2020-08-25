@@ -67,10 +67,10 @@ def new_chore(request):
             input_name = form.cleaned_data['name']
             input_desc = form.cleaned_data['description']
             input_assignees = form.cleaned_data['assignees']
-            new_chore = Chore(apt_id=apt_id, name=input_name, creator=current_user, description=input_desc)
-            new_chore.save()
+            new_chore_obj = Chore(apt_id=apt_id, name=input_name, creator=current_user, description=input_desc)
+            new_chore_obj.save()
             for assignee in input_assignees:
-                new_chore.assignees.add(User.objects.get(username=assignee))
+                new_chore_obj.assignees.add(User.objects.get(username=assignee))
             #messages.success(request, 'You have successfully created a Chore!')
             return redirect('roomate_app:dashboard')
     

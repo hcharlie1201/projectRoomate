@@ -3,6 +3,7 @@ from django.contrib.auth import views as views_builtin
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from . import forms
+from . import views
 
 app_name = 'users'
 urlpatterns = [
@@ -12,4 +13,8 @@ urlpatterns = [
     path('register/', CreateView.as_view(template_name='registration/register.html',
         form_class=forms.RegisterUserForm, 
         success_url=reverse_lazy('roomate_app:dashboard')), name='register'),
+    path("change_password/", views.change_password, name='change_password')
+    
+
 ]
+

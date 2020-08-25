@@ -88,3 +88,11 @@ def delete_chore(request, chore_id =None):
     messages.warning(request, 'Successfully delete.')
     return redirect('roomate_app:dashboard')
 
+@login_required
+def profile(request): 
+    username = request.user.username
+    email = request.user.email
+    context = {'username':username, 'email': email}
+    return render(request, 'roomate_app/profile.html', context)
+
+

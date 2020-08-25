@@ -12,11 +12,10 @@
                     {% csrf_token %}
                     <input type="hidden" id="num-users" name="num-users" value="{{ numUsers }}">
                     <label for="{{ form.name.id_for_label }}" class="sr-only">Name</label>
-                    <input type="name" id="{{ form.name.id_for_label }}" name="{{ form.name.html_name }}" class="form-control" placeholder="Name" required>
+                    <input type="name" id="{{ form.name.id_for_label }}" name="{{ form.name.html_name }}" class="form-control chore-form-space" placeholder="Name" required>
                     <label for="{{ form.description.id_for_label }}" class="sr-only">Description</label>
-                    <textarea id="{{ form.description.id_for_label }}" name="{{ form.description.html_name }}" class="form-control" placeholder="Description" required></textarea>
-                    {% render_field form.assignees id="assignees" class="custom-select" name="assignees" %}
-                    <a href="#" onclick="clearSelected();">clear</a>
+                    <textarea id="{{ form.description.id_for_label }}" name="{{ form.description.html_name }}" class="form-control chore-form-space" placeholder="Description" required></textarea>
+                    {% render_field form.assignees id="assignees" class="selectpicker chore-form-space" name="assignees" data-live-search="true" title="Pick an Assignee" %}<br>
                     {% if messages %}
                         {% for message in messages %}
                             <p class="error-font">{{ message }}</p>

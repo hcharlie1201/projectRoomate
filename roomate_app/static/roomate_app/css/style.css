@@ -61,3 +61,26 @@ textarea {
     width: 32rem;
     height: 24rem;
 }
+
+a {
+    text-decoration: none;
+}
+
+#navbar #navbarNav ul li a{
+    display: block;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+#navbar #navbarNav ul li a:hover {
+    background: rgb(0, 141, 160);
+}
+
+
+.chore-form-space {
+    margin-top: 1rem;
+}
+
+.trash {
+    margin-right: 0.5rem;
+}

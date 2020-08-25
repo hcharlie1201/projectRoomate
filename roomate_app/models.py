@@ -43,9 +43,8 @@ def save_user_myuser(sender, instance, **kwargs):
 class Chore(models.Model):
     apt_id = models.ForeignKey(Apartment, null=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    creator = models.ForeignKey(
-        User, null=False, on_delete=models.CASCADE, related_name='creator_user')
-    assignees = models.ManyToManyField(User, blank=True, default="")
+    creator = models.ForeignKey(User, null=False, on_delete=models.CASCADE, related_name='creator_user')
+    assignees = models.ManyToManyField(User, blank=True)
     description = models.CharField(max_length=500, default="Description of Chore")
     complete = models.BooleanField(default=False)
     date_added = models.DateTimeField(auto_now_add=True)

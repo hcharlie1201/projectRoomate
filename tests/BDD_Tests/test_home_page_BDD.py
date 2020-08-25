@@ -25,6 +25,7 @@ class HomepageTests(StaticLiveServerTestCase):
         auth_user1 = User.objects.create(username='user1')
         auth_user1.set_password('abc1233456789')
         auth_user1.save()
+
     #A registered user (user1) can login from the home page
     def test_user_login_BDD(self):
         timeout = 2
@@ -37,6 +38,18 @@ class HomepageTests(StaticLiveServerTestCase):
         result = self.selenium.find_element_by_xpath('/html/body/div')
         self.assertIn("Create a new Apartment", result.text)
 
+    #A regustered user can login click profile from home page
+    def test_user_profile(self):
+        timeout = 5
+        self.selenium.get('%s%s' % (self.live_server_url, '/users/login/'))
+        self.selenium.find_element_by_name("username").send_keys('user1')
+        self.selenium.find_element_by_name("password").send_keys('abc1233456789')
+        self.selenium.find_element_by_xpath('//*[@id="card"]/div/form/button').click()
+        self.selenium.find_element_by_link_text('Profile').click()
+        WebDriverWait(self.selenium, timeout).until(
+            lambda driver: driver.find_element_by_tag_name('body')) 
+        result = self.selenium.find_element_by_xpath('/html/body')
+        self.assertIn("Username: user1", result.text)
 
     #A new user can register from the home page
     def test_user_register_BDD(self):
@@ -74,16 +87,14 @@ class HomepageTests(StaticLiveServerTestCase):
         self.selenium.find_element_by_name("username").send_keys('user1')
         self.selenium.find_element_by_name("password").send_keys('abc1233456789')
         self.selenium.find_element_by_xpath('//*[@id="card"]/div/form/button').click()
+<<<<<<< HEAD
         self.selenium.find_element_by_xpath('//*[@id="navbarNav"]/ul/li[3]/a').click()
+=======
+        self.selenium.find_element_by_link_text('Logout').click()
+>>>>>>> 49fc796697f8996f58891107a843d4360ce980d2
         WebDriverWait(self.selenium, timeout).until(
-            lambda driver: driver.find_element_by_tag_name('body'))
-        
+            lambda driver: driver.find_element_by_tag_name('body')) 
         result = self.selenium.find_element_by_xpath('/html/body/div')
         self.assertIn("You have been logged out.", result.text)
         self.assertTemplateUsed('registration/logged_out.html')
-
-
-
-
-
-
+        

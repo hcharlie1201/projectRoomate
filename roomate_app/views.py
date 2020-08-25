@@ -113,3 +113,9 @@ def leave_apt(request):
     my_user.myApt = None
     my_user.save()
     return render(request, 'roomate_app/dashboard.html')
+
+@login_required
+def complete_chore(request, chore_id=None):
+    chore_obj = Chore.objects.get(id=chore_id)
+    chore_obj.delete()
+    return redirect('roomate_app:dashboard')

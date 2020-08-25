@@ -34,6 +34,9 @@
                                 <div class="col-md-3 push-md-9 text-right">
                                     <a class="btn btn-info" href="{% url 'roomate_app:delete_a_chore' c.id%}"><i class="fa fa-trash trash"></i>Delete</a>
                                 </div>
+                                <div class="col-md-12 push-md-9 text-right">
+                                    <a class="btn btn-info" href="{% url 'roomate_app:completeChore' c.id%}"><i class="fa fa-check"></i> Complete</a>
+                                </div>
                             </div>    
                         </div>
                     </div>

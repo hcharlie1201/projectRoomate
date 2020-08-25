@@ -13,5 +13,6 @@ urlpatterns = [
     path('newapt/', views.new_apt, name='newApartment'),
     path('joinapt/', views.assign_apt, name='joinApartment'),
     path('profile/', views.profile, name='profile'),
-    path('newchore/', views.new_chore, name='newChore')
+    path('newchore/', views.new_chore, name='newChore'),
+    path('leaveapt/', views.leave_apt, name='leaveApt'),
 ]

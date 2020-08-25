@@ -6,6 +6,11 @@
         <div class="card-header">
           <p>Username: {{ username }}</p>
           <p>Email: {{ email }}</p>
+          <form method="post" action="{% url 'roomate_app:leaveApt' %}">
+            {% csrf_token %}
+            <button class="btn btn-info apt-btn-space" name="submit">Leave the current Apartment</button>
+            <input type="hidden" name="next" value="{% url 'roomate_app:dashboard' %}"/>
+        </form>
         </div>
     </div>
   </div>

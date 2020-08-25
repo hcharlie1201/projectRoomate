@@ -74,7 +74,7 @@ class HomepageTests(StaticLiveServerTestCase):
         self.selenium.find_element_by_name("username").send_keys('user1')
         self.selenium.find_element_by_name("password").send_keys('abc1233456789')
         self.selenium.find_element_by_xpath('//*[@id="card"]/div/form/button').click()
-        self.selenium.find_element_by_xpath('//*[@id="navbarNav"]/ul/li[2]/a').click()
+        self.selenium.find_element_by_xpath('//*[@id="navbarNav"]/ul/li[3]/a').click()
         WebDriverWait(self.selenium, timeout).until(
             lambda driver: driver.find_element_by_tag_name('body'))
         

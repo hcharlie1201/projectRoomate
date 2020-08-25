@@ -67,7 +67,7 @@ class ChoreAddTests(StaticLiveServerTestCase):
 
     # User can add a chore to a new apartment
     def test_add_chore_clean_apt_BDD(self):
-        self.selenium.find_element_by_xpath('/html/body/div/a').click()
+        self.selenium.find_element_by_xpath('/html/body/div/div/a').click()
         self.selenium.find_element_by_name('name').send_keys('wash dishes')
         self.selenium.find_element_by_name(
             'description').send_keys('wash dishes')
@@ -79,7 +79,7 @@ class ChoreAddTests(StaticLiveServerTestCase):
     
     #User should delete a chore
     def test_delete_chore(self):
-        self.selenium.find_element_by_xpath('/html/body/div/a').click()
+        self.selenium.find_element_by_xpath('/html/body/div/div/a').click()
         self.selenium.find_element_by_name('name').send_keys('wash dishes')
         self.selenium.find_element_by_name(
             'description').send_keys('wash dishes')

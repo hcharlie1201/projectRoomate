@@ -12,5 +12,8 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('newapt/', views.new_apt, name='newApartment'),
     path('joinapt/', views.assign_apt, name='joinApartment'),
+    path('profile/', views.profile, name='profile'),
     path('newchore/', views.new_chore, name='newChore'),
+    path('leaveapt/', views.leave_apt, name='leaveApt'),
+    url(r'^complete/(?P<chore_id>[0-9]+)/$', views.complete_chore, name='completeChore'),
 ]

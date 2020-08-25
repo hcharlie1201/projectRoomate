@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="card profile-card">
+        <div class="card-body d-flex flex-column">
+          <div class="row">
+            <div class="col-md-3 pull-md-9 text-left">
+              <p>Username: </p>
+              <p>Email: </p>
+            </div>
+            <div class="col-md-9 push-md-3 text-left">
+              <p>{{ username }}</p>
+              <p>{{ email }}</p>
+            </div>
+          </div>
+          <div class="mt-auto">
+            <form method="post" action="{% url 'users:change_password' %}">
+              {% csrf_token %}
+              <button class="btn btn-info btn-block" name="submit">Change Password</button>
+              <input type="hidden" name="next" value="{% url 'roomate_app:dashboard' %}"/>
+            </form>
+            <form method="post" action="{% url 'roomate_app:leaveApt' %}" class="margin">
+              {% csrf_token %}
+              <button class="btn btn-danger btn-block" name="submit-leave">Leave the current Apartment</button>
+              <input type="hidden" name="next" value="{% url 'roomate_app:dashboard' %}"/>
+            </form>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -16,14 +16,28 @@
             <div class="container w-100 h-100 chores-size">
                 <div class="row h-100 justify-content-center align-items-center">
                     <div id="card" class="card mb-3 w-100">
+                        <div class="card-header">
+                            {{ c.name }}
+                        </div>
                         <div class="card-body">
-                            <h5> {{ c.name }} </h5>
-                            <p> {{ c.description }} </p>
-                            <p> {{ c.creator.username }} </p>
-                            {% for a in c.assignees.all %}
-                                <p> {{ a }} </p>
-                            {% endfor %}
-                            <a href="{% url 'roomate_app:delete_a_chore' c.id%}"><i class="fa fa-trash">Delete</i></a>
+                            <div class="row">
+                                <div class="col-md-9 pull-md-3">
+                                    <p> Description: {{ c.description }} </p>
+                                    <p> Creator: {{ c.creator.username }} </p>
+                                    <div>
+                                        Assignees:
+                                        {% for a in c.assignees.all %}
+                                            {{ a }}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-md-3 push-md-9 text-right">
+                                    <a class="btn btn-info" href="{% url 'roomate_app:delete_a_chore' c.id%}"><i class="fa fa-trash trash"></i>Delete</a>
+                                </div>
+                                <div class="col-md-12 push-md-9 text-right">
+                                    <a class="btn btn-info" href="{% url 'roomate_app:completeChore' c.id%}"><i class="fa fa-check"></i> Complete</a>
+                                </div>
+                            </div>    
                         </div>
                     </div>
                 </div>
@@ -38,10 +52,13 @@
         </div>
         </ul>
     {% else %}
-        <p> No chores</p>
-        <div>
-            <a class="btn btn-info btn-lg apt-btn-space" href="{% url 'roomate_app:newChore' %}" role="button">Create a new Chore</a>
+    <div class="container w-100 h-100 chores-size">
+        <div class="row h-100 justify-content-center align-items-center">
+            <a class="btn btn-info btn-lg btn-block chore-btn-size" href="{% url 'roomate_app:newChore' %}" role="button" name="createchore">
+                <div class="vertical">Create a new Chore</div>
+            </a>
         </div>
+    </div>
     {% endif %}
 {% else %}
     <div class="container h-100">

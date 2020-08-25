@@ -67,10 +67,10 @@ def new_chore(request):
             input_name = form.cleaned_data['name']
             input_desc = form.cleaned_data['description']
             input_assignees = form.cleaned_data['assignees']
-            new_chore = Chore(apt_id=apt_id, name=input_name, creator=current_user, description=input_desc)
-            new_chore.save()
+            new_chore_obj = Chore(apt_id=apt_id, name=input_name, creator=current_user, description=input_desc)
+            new_chore_obj.save()
             for assignee in input_assignees:
-                new_chore.assignees.add(User.objects.get(username=assignee))
+                new_chore_obj.assignees.add(User.objects.get(username=assignee))
             #messages.success(request, 'You have successfully created a Chore!')
             return redirect('roomate_app:dashboard')
     
@@ -88,3 +88,34 @@ def delete_chore(request, chore_id =None):
     messages.warning(request, 'Successfully delete.')
     return redirect('roomate_app:dashboard')
 
+@login_required
+def profile(request): 
+    username = request.user.username
+    email = request.user.email
+    context = {'username':username, 'email': email}
+    return render(request, 'roomate_app/profile.html', context)
+
+@login_required
+def leave_apt(request):
+    if request.method != 'POST':
+        #need to raise a flash here
+        messages.warning(request, 'Failed to leave the Apartment. Please try again.')
+        return redirect('roomate_app:dashboard')
+
+    current_user = request.user
+    apt_id = current_user.myuser.myApt
+
+    my_user = current_user.myuser
+    roommates = MyUser.objects.filter(myApt=apt_id)
+    if roommates.count() == 1:
+        my_user.myApt.delete()
+
+    my_user.myApt = None
+    my_user.save()
+    return render(request, 'roomate_app/dashboard.html')
+
+@login_required
+def complete_chore(request, chore_id=None):
+    chore_obj = Chore.objects.get(id=chore_id)
+    chore_obj.delete()
+    return redirect('roomate_app:dashboard')

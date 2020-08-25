@@ -5,13 +5,14 @@ import secrets
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from hashlib import sha1
+from django.utils.crypto import get_random_string
 # Create your models here.
 
 
 class Apartment(models.Model):
     apt_id = models.AutoField(primary_key=True)
     date_added = models.DateTimeField(auto_now_add=True)
-    token = models.CharField(max_length=100, default=sha1((secrets.token_urlsafe() + str(apt_id)).encode('utf-8')).hexdigest())
+    token = models.CharField(max_length=100)
 
     class Meta:
         verbose_name_plural = "apartments"

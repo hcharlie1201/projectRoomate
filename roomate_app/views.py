@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from .forms import JoinApartmentForm, CreateChoreForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from hashlib import sha1
+import secrets
 
 # Create your views here.
 def index(request):
@@ -25,7 +27,8 @@ def new_apt(request):
         messages.warning(request, 'Failed To Create An Apartment. Please try again.')
         return redirect('roomate_app:dashboard')
     
-    my_apartment = Apartment()
+    my_apartment = Apartment.objects.create()
+    my_apartment.token = sha1((secrets.token_hex() + str(my_apartment.pk)).encode('utf-8')).hexdigest()
     current_user = request.user
     current_user.myuser.myApt = my_apartment
     my_apartment.save()
@@ -83,8 +86,8 @@ def new_chore(request):
 
 @login_required
 def delete_chore(request, chore_id =None):
-    object = Chore.objects.get(id=chore_id)
-    object.delete()
+    chore_object = Chore.objects.get(id=chore_id)
+    chore_object.delete()
     messages.warning(request, 'Successfully delete.')
     return redirect('roomate_app:dashboard')
 

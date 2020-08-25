@@ -14,7 +14,7 @@ class AptTests(TestCase):
         self.auth_user1.save()
         self.auth_user2.save()
 
-        self.dummy_apartment = Apartment.objects.create()
+        self.dummy_apartment = Apartment.objects.create(token="asfa654684dfsthuasert55")
 
 
     def test_new_apartment(self):
@@ -40,3 +40,19 @@ class AptTests(TestCase):
         response = self.client.post('/joinapt/', {'apt_token': 'abc'})
         warning = list(get_messages(response.wsgi_request))
         self.assertEqual('Failed To Join An Apartment. Please Verify Your Token.', str(warning[0]))
+
+    def test_apartment_tokens_unique(self):
+        total = 10
+        tokens = []
+        self.client.login(username='user1', password='abc123456789')
+        for _ in range(total):
+            _ = self.client.post('/newapt/', {})
+        all_apartments = Apartment.objects.all()
+        if len(all_apartments) != (total + 1):
+            self.assertFalse(True)
+        for apartment in all_apartments[1:]:
+            if apartment.token in tokens:
+                self.assertFalse(True)
+            else:
+                tokens.append(apartment.token)
+

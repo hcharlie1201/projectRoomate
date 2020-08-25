@@ -13,4 +13,3 @@ geckodriver
 db.sqlite3
 tests.db
 .env
-

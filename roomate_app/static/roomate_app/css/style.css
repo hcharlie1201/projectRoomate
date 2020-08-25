@@ -84,3 +84,12 @@ a {
 .trash {
     margin-right: 0.5rem;
 }
+
+.profile-card {
+    width: 32rem;
+    height: 18rem;
+}
+
+.margin {
+    margin-top: 1rem;
+}

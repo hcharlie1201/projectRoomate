@@ -61,3 +61,11 @@ textarea {
     width: 32rem;
     height: 24rem;
 }
+
+.chore-form-space {
+    margin-top: 1rem;
+}
+
+.trash {
+    margin-right: 0.5rem;
+}

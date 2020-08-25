@@ -22,16 +22,18 @@ def register(request):
 
 @login_required
 def change_password(request):
+
+    form = forms.PasswordChangeForm(user=request.user)
+
     if request.method == 'POST':
 
         form = forms.PasswordChangeForm(user=request.user, data=request.POST)
 
         if form.is_valid():
+
             user = form.save()
             update_session_auth_hash(request, user)
-            messages.success(request, 'Failed To Create A Profile. Please Try Again.')
             return redirect('roomate_app:dashboard')
 
-    form = forms.PasswordChangeForm(user=request.user)
     return render(request, 'registration/change_password.html', {'form':form})
 

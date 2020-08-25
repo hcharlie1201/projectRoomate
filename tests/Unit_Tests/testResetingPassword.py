@@ -14,6 +14,5 @@ class ResetPasswordTest(TestCase):
         _ = self.client.post('/users/change_password/',{'old_password':'abc123456789', 'new_password1':'abc12345678999', 'new_password2':'abc12345678999'})
         new_pass = self.client.login(username='user1', password='abc12345678999')
         old_pass = self.client.login(username='user1', password='abc123456789')
-        # print(response.templates)
         self.assertTrue(new_pass)
         self.assertFalse(old_pass)

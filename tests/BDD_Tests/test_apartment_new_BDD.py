@@ -54,7 +54,7 @@ class ApartmentTests(StaticLiveServerTestCase):
     
     #From dashboard, the user can create a new apartment.
     def test_user_create_apt_BDD(self):
-        self.selenium.find_element_by_xpath('/html/body/div/div/div[1]/form/button').click()
+        self.selenium.find_element_by_id('create-apt').click()
         result = self.selenium.find_element_by_xpath('/html/body/div')
 
         self.assertIn("Create a new Chore", result.text)
@@ -64,7 +64,7 @@ class ApartmentTests(StaticLiveServerTestCase):
 
     #From dashboard, the user can join an existing apartment
     def test_user_join_apt_BDD(self):
-        self.selenium.find_element_by_xpath('/html/body/div/div/div[2]/a').click()
+        self.selenium.find_element_by_id('join-apt').click()
         self.selenium.find_element_by_xpath('//*[@id="id_apt_token"]').send_keys(self.apt_token)
         self.selenium.find_element_by_name('submit').click()
         result = self.selenium.find_element_by_xpath('/html/body/div')
@@ -76,7 +76,7 @@ class ApartmentTests(StaticLiveServerTestCase):
 
     #From dashboard, the user provides incorrect token.
     def test_user_join_apt_sad_BDD(self):
-        self.selenium.find_element_by_xpath('/html/body/div/div/div[2]/a').click()
+        self.selenium.find_element_by_id('join-apt').click()
         self.selenium.find_element_by_xpath('//*[@id="id_apt_token"]').send_keys('a')
         self.selenium.find_element_by_name('submit').click()
         result = self.selenium.find_element_by_xpath('/html/body/div')
@@ -84,7 +84,7 @@ class ApartmentTests(StaticLiveServerTestCase):
 
     #The user should see chores associted to an apartment after joining
     def test_user_join_apt_chore(self):
-        self.selenium.find_element_by_xpath('/html/body/div/div/div[2]/a').click()
+        self.selenium.find_element_by_id('join-apt').click()
         self.selenium.find_element_by_xpath('//*[@id="id_apt_token"]').send_keys(self.apt_chore_token)
         self.selenium.find_element_by_name('submit').click()
         result = self.selenium.find_element_by_xpath('/html/body')

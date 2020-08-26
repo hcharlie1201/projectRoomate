@@ -3,8 +3,8 @@
 }
 
 .apt-btn-space {
-    margin-right: 35px;
-    margin-left: 35px;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 .form-space {
@@ -15,11 +15,15 @@
 .card-size-login {
     padding-top: 2%;
     padding-bottom: 2%;
-    width: 35%;
+    width: 28rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
 }
 
 .card-size-signup {
-    width: 35%;
+    width: 28rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
 }
 
 .card-size-apt {
@@ -27,9 +31,11 @@
     height: 14rem;
 }
 
-html, body {
-    margin: 0;
+html {
     height: 100%;
+}
+body {
+    min-height: 100%;
 }
 
 textarea {
@@ -39,7 +45,9 @@ textarea {
 .card-size-home {
     padding-top: 5%;
     padding-bottom: 5%;
-    width: 35%;
+    width: 28rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
 }
 
 .error-font {
@@ -73,7 +81,7 @@ a {
 }
 
 #navbar #navbarNav ul li a:hover {
-    background: rgb(0, 141, 160);
+    background: rgba(51, 51, 51, 0.678);
 }
 
 
@@ -92,4 +100,52 @@ a {
 
 .margin {
     margin-top: 1rem;
+}
+
+.bg-apt {
+    background: linear-gradient(#25252586, #25252586), url("../pictures/background.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.btn-xl {
+    padding: 1.5rem 3rem;
+    font-size: 20px;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    margin-right: 10rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.bg-white {
+    background-color: #868e96 !important;
+    height:100%;
+}
+
+.bg-card {
+    background-color: #535353b0 !important;
+    border: 0px !important;
+}
+
+.bg-form-bar {
+    background-color: #a5a5a5b0 !important;
+    border: 0px !important;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+input::placeholder {
+    color: white !important;
+}
+
+.ul-padding {
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.chores-btn-size {
+    margin: 0.5rem;
 }

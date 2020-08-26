@@ -1,22 +1,22 @@
 {% extends "base.html" %} 
 {% block content %}
-<div class="container h-100">
+<div class="container h-75">
     <div class="row h-100 justify-content-center align-items-center">
-        <div id="card" class="card mb-3 card-size-apt bg-custom-1">
-            <div class="card-header">
-                Enter the Apartment token
-            </div>
+        <div id="card" class="card mb-3 bg-card card-size-apt bg-custom-1">
+            <div class="card-header text-white font-weight-bold text-center">
+                <h4>Enter the Apartment token</h4>
+              </div>
             <div class="card-body">
                 <form method="post" action="{% url 'roomate_app:joinApartment' %}">
                     {% csrf_token %}
                     <label for="{{ form.apt_token.id_for_label }}" class="sr-only">Apartment Token</label>
-                    <input type="apt_token" id="{{ form.apt_token.id_for_label }}" name="{{ form.apt_token.html_name }}" class="form-control" placeholder="Apartment Token" required>
+                    <input type="apt_token text-white" id="{{ form.apt_token.id_for_label }}" name="{{ form.apt_token.html_name }}" class="form-control bg-form-bar" placeholder="Apartment Token" required>
                     {% if messages %}
                         {% for message in messages %}
                             <p class="error-font">{{ message }}</p>
                         {% endfor %}
                     {% endif %}
-                    <button class="btn btn-info form-space" name="submit">Enter</button>
+                    <button class="btn btn-outline-light btn-block form-space" name="submit">Enter</button>
                     <input type="hidden" name="next" value="{% url 'roomate_app:dashboard' %}"/>
                 </form>
             </div>

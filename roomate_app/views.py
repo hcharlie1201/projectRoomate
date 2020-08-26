@@ -27,9 +27,9 @@ def new_apt(request):
         messages.warning(request, 'Failed To Create An Apartment. Please try again.')
         return redirect('roomate_app:dashboard')
     
+    current_user = request.user
     my_apartment = Apartment.objects.create()
     my_apartment.token = sha1((secrets.token_hex() + str(my_apartment.pk)).encode('utf-8')).hexdigest()
-    current_user = request.user
     current_user.myuser.myApt = my_apartment
     my_apartment.save()
     current_user.save()
@@ -45,7 +45,8 @@ def assign_apt(request):
             input_token = form.cleaned_data['apt_token']
             apt_list = Apartment.objects.filter(token=input_token)
             if apt_list.count() > 0:
-                current_user.myuser.myApt = Apartment.objects.get(token=input_token)
+                apt = Apartment.objects.get(token=input_token)
+                current_user.myuser.myApt = apt
                 current_user.save()
                 return redirect('roomate_app:dashboard')
             else:

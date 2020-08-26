@@ -16,6 +16,7 @@
                     <label for="{{ form.description.id_for_label }}" class="sr-only">Description</label>
                     <textarea id="{{ form.description.id_for_label }}" name="{{ form.description.html_name }}" class="form-control chore-form-space" placeholder="Description" required></textarea>
                     {% render_field form.assignees id="assignees" class="selectpicker chore-form-space" name="assignees" data-live-search="true" title="Pick an Assignee" %}<br>
+
                     {% if messages %}
                         {% for message in messages %}
                             <p class="error-font">{{ message }}</p>

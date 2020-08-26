@@ -14,6 +14,9 @@ class CreateChoreForm(forms.ModelForm):
         self.user = kwargs.pop('user', None)
         super(CreateChoreForm, self).__init__(*args, **kwargs)
 
+        my_user = self.user.myuser
+        myusers = MyUser.objects.filter(myApt=my_user.myApt)
+        self.fields['assignees'].queryset = User.objects.filter(myuser__in=myusers)
         #users = []
         #myUsers = MyUser.objects.filter(myApt=self.user.myuser.myApt)
         #for myUser in myUsers:

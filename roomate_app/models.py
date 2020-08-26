@@ -22,13 +22,12 @@ class Apartment(models.Model):
 
 
 class MyUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     myApt = models.ForeignKey(Apartment, null=True, on_delete=models.SET_NULL)
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = "myusers"
-
 
 @receiver(post_save, sender=User)
 def create_user_myuser(sender, instance, created, **kwargs):

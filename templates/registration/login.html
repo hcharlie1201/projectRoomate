@@ -1,25 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="container h-100">
+<div class="container h-75">
   <div class="row h-100 justify-content-center align-items-center">
-    <div id="card" class="card card-size-login mb-3">
+    <div id="card" class="card card-size-login mb-3 bg-card">
+      <div class="card-header text-white font-weight-bold text-center">
+        <h4>Please Sign In</h4>
+      </div>
       <div class="card-body">
-        <h2 class="card-title text-center">Please sign in</h2>
         <form class="form-signin" method="post" action="{% url 'users:login' %}">
           {% csrf_token %}
           <label for="{{ form.username.id_for_label }}" class="sr-only">Username</label>
-          <input type="username" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" class="form-control" placeholder="Username" required>
+          <input type="username" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" class="form-control bg-form-bar text-white" placeholder="Username" required>
           <label for="{{ form.password.id_for_label }}" class="sr-only">Password</label>
-          <input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" class="form-control" placeholder="Password" required>
+          <input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" class="form-control bg-form-bar text-white" placeholder="Password" required>
           {% if form.errors %}
             <p class="card-text text-danger">Your username and password didn't match. Please try again.</p>
           {% endif %}
-          <button class="btn btn-info btn-block form-space" type="submit">Sign in</button>
+          <button class="btn btn-outline-light btn-block form-space font-weight-bold" type="submit">Sign in</button>
           <input type="hidden" name="next" value="{% url 'roomate_app:dashboard' %}"/>
         </form>
       </div>
   </div>
 </div>
-
 {% endblock content %}

@@ -11,9 +11,9 @@
 {% endif %}
 {% if user.myuser.myApt %}
     {% if chores %}
-        <ul>
+        <ul class="ul-padding">
         {% for c in chores %}
-            <div class="container w-100 h-100 chores-size">
+            <div class="container w-100 h-75 chores-size">
                 <div class="row h-100 justify-content-center align-items-center">
                     <div id="card" class="card mb-3 w-100">
                         <div class="card-header">
@@ -21,7 +21,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-9 pull-md-3">
+                                <div class="col-md-9 pull-md-3 mb-2">
                                     <p> Description: {{ c.description }} </p>
                                     <p> Creator: {{ c.creator.username }} </p>
                                     <div>
@@ -32,10 +32,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3 push-md-9 text-right">
-                                    <a class="btn btn-info" href="{% url 'roomate_app:delete_a_chore' c.id%}"><i class="fa fa-trash trash"></i>Delete</a>
-                                </div>
-                                <div class="col-md-12 push-md-9 text-right">
-                                    <a class="btn btn-info" href="{% url 'roomate_app:completeChore' c.id%}"><i class="fa fa-check"></i> Complete</a>
+                                    <div class="d-flex flex-column">
+                                        <a class="btn btn-info chores-btn-size" href="{% url 'roomate_app:completeChore' c.id%}"><i class="fa fa-check trash"></i> Complete</a>
+                                        <a class="btn btn-danger chores-btn-size" href="{% url 'roomate_app:delete_a_chore' c.id%}"><i class="fa fa-trash trash"></i>Delete</a>
+                                    </div>
                                 </div>
                             </div>    
                         </div>
@@ -45,36 +45,40 @@
         {% endfor %}
         <div class="container w-100 h-100 chores-size">
             <div class="row h-100 justify-content-center align-items-center">
-                <a class="btn btn-info btn-lg btn-block chore-btn-size" href="{% url 'roomate_app:newChore' %}" role="button" name="createchore">
+                <a class="btn btn-outline-light font-weight-bold btn-lg btn-block chore-btn-size" href="{% url 'roomate_app:newChore' %}" role="button" name="createchore">
                     <div class="vertical">Create a new Chore</div>
                 </a>
             </div>
         </div>
         </ul>
     {% else %}
-    <div class="container w-100 h-100 chores-size">
+    <div class="container-fluid w-100 h-75 chores-size">
         <div class="row h-100 justify-content-center align-items-center">
-            <a class="btn btn-info btn-lg btn-block chore-btn-size" href="{% url 'roomate_app:newChore' %}" role="button" name="createchore">
+            <a class="btn btn-outline-light btn-xl" href="{% url 'roomate_app:newChore' %}" role="button" name="createchore">
                 <div class="vertical">Create a new Chore</div>
             </a>
         </div>
     </div>
     {% endif %}
 {% else %}
-    <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
-            <div>
-                <form method="post" action="{% url 'roomate_app:newApartment' %}">
-                    {% csrf_token %}
-                    <button class="btn btn-info btn-lg apt-btn-space" name="submit">Create a new Apartment</button>
-                    <input type="hidden" name="next" value="{% url 'roomate_app:dashboard' %}"/>
-                </form>
-            </div>
-            <div>
-                <a class="btn btn-info btn-lg apt-btn-space" href="{% url 'roomate_app:joinApartment' %}" role="button">Join an existing Apartment</a>
+<div class="container-fluid h-75">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="card profile-card ml-3 mr-3 bg-card">
+            <div class="card-body text-white d-flex flex-column justify-content-center align-items-center">
+                <div>
+                    <form method="post" action="{% url 'roomate_app:newApartment' %}">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-light btn-lg apt-btn-space" name="submit" id="create-apt">Create a new Apartment</button>
+                        <input type="hidden" name="next" value="{% url 'roomate_app:dashboard' %}"/>
+                    </form>
+                </div>
+                <div>
+                    <a class="btn btn-outline-light btn-lg apt-btn-space" href="{% url 'roomate_app:joinApartment' %}" role="button" id="join-apt">Join an existing Apartment</a>
+                </div>
             </div>
         </div>
     </div>
+</div>
 {% endif %}
 {% endblock content %}
 

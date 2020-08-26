@@ -95,7 +95,14 @@ def delete_chore(request, chore_id =None):
 def profile(request): 
     username = request.user.username
     email = request.user.email
-    context = {'username':username, 'email': email}
+    my_user = request.user.myuser
+    apt = my_user.myApt
+    apt_token = ""
+    if apt == None:
+        apt_token = "You are not in an Apartment"
+    else:
+        apt_token = apt.token
+    context = {'username': username, 'email': email, 'apt_token': apt_token}
     return render(request, 'roomate_app/profile.html', context)
 
 @login_required
